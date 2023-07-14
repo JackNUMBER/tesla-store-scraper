@@ -46,7 +46,7 @@ function extractHoursFromParagraph(paragraph, cheerio) {
 }
 
 function writeInFile(content) {
-  stream.write(JSON.stringify(content, null, 2) + '\n', (err) => {
+  stream.write(content, (err) => {
     if (err) {
       console.error(
         "Une erreur s'est produite lors de l'écriture du fichier JSON :",
@@ -186,15 +186,17 @@ async function scrap(url) {
     const countries = await scrapCountries(url);
     const storeUrls = [];
 
-    for (const country of [countries[0]]) {
+    for (const country of [countries[10]]) {
       const countryStoresUrls = await scrapCountryStoreList(country);
       storeUrls.push(...countryStoresUrls);
     }
 
+    writeInFile('[\n');
     for (const url of storeUrls) {
       const storeData = await scrapStorePage(url);
-      writeInFile(storeData);
+      writeInFile(JSON.stringify(storeData, null, 2) + ',\n');
     }
+    writeInFile(']');
   } catch (error) {
     console.error("Une erreur s'est produite lors du scraping :", error);
     return [];
