@@ -130,10 +130,9 @@ async function scrapStorePage(url) {
 }
 
 // get store list from country page
-async function scrapCountryStoreList(country) {
-  console.log(country.name);
+async function scrapCountryStoreList(url) {
   try {
-    const response = await axios.get(country.url);
+    const response = await axios.get(url);
     const $ = cheerio.load(response.data);
     const storeUrls = [];
 
@@ -186,11 +185,14 @@ async function scrap(url) {
     const countries = await scrapCountries(url);
     const storeUrls = [];
 
+    console.log(`\x1b[33mGet store urls from... \x1b[0m`);
     for (const country of countries) {
-      const countryStoresUrls = await scrapCountryStoreList(country);
+      console.log(country.name);
+      const countryStoresUrls = await scrapCountryStoreList(country.url);
       storeUrls.push(...countryStoresUrls);
     }
 
+    console.log(`\n\x1b[33mGet store informations... \x1b[0m`);
     writeInFile('[\n');
     for (const url of storeUrls) {
       const storeData = await scrapStorePage(url);
@@ -205,6 +207,7 @@ async function scrap(url) {
 
 scrap(startUrl)
   .then(() => {
+    console.log('\x1b[32m \n\n✔ Terminé\n\n \x1b[0m');
     stream.end();
   })
   .catch((error) => {
