@@ -186,7 +186,7 @@ async function scrap(url) {
     const countries = await scrapCountries(url);
     const storeUrls = [];
 
-    for (const country of [countries[10]]) {
+    for (const country of countries) {
       const countryStoresUrls = await scrapCountryStoreList(country);
       storeUrls.push(...countryStoresUrls);
     }
