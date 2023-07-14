@@ -182,22 +182,38 @@ async function scrapCountries(url) {
 
 async function scrap(url) {
   try {
-    const countries = await scrapCountries(url);
-    const storeUrls = [];
+    const urls = await scrapCountries(url);
+    /*
+    // Item sample:
+    {
+      name: 'New Zealand',
+      url: 'https://www.tesla.com/findus/list/stores/New+Zealand',
+      storeUrls: [
+        'https://www.tesla.com/findus/location/store/TeslaCentreAucklandSouth',
+        'https://www.tesla.com/findus/location/store/aucklandponsonby',
+        'https://www.tesla.com/findus/location/store/teslachristchurch15pilkingtonway',
+        'https://www.tesla.com/findus/location/store/wellingtonngauranga'
+      ]
+    }
+    */
 
-    console.log(`\x1b[33mGet store urls from... \x1b[0m`);
-    for (const country of countries) {
+    console.log(`\x1b[33mGet stores urls from...\x1b[0m`);
+    for (const country of urls) {
       console.log(country.name);
-      const countryStoresUrls = await scrapCountryStoreList(country.url);
-      storeUrls.push(...countryStoresUrls);
+      country.storeUrls = await scrapCountryStoreList(country.url);
     }
 
-    console.log(`\n\x1b[33mGet store informations... \x1b[0m`);
+    console.log(`\n\x1b[33mGet stores informations...\x1b[0m`);
     writeInFile('[\n');
-    for (const url of storeUrls) {
-      const storeData = await scrapStorePage(url);
-      writeInFile(JSON.stringify(storeData, null, 2) + ',\n');
+
+    for (const country of urls) {
+      console.log(`\x1b[34m${country.name}\x1b[0m`);
+      for (const url of country.storeUrls) {
+        const storeData = await scrapStorePage(url);
+        writeInFile(JSON.stringify(storeData, null, 2) + ',\n');
+      }
     }
+
     writeInFile(']');
   } catch (error) {
     console.error("Une erreur s'est produite lors du scraping :", error);
