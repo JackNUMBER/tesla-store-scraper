@@ -6,15 +6,15 @@ Install dependencies with:
 npm install
 ```
 
-## Run
+## Scrap data
 
-Start the script with:
+Start the data script with:
 
 ```
-npm run start
+npm run scrap
 ```
 
-The data will writed in stream in the `output` folder.
+The data will be written in stream in the `output/tesla_stores.json` file.
 
 Here a sample of output data:
 
@@ -56,12 +56,22 @@ Here a sample of output data:
 },
 ```
 
-## Known issues
+### Known issues
 
 At the moment, output JSON is not well formated because it ends by `},]` instead of `}]`.
 In the same way, if you stop the script during processing, the final `]` will not be added.
 
 I know it's not ideal, but hey! the time it takes to solve it with code is much longer than the time it takes to fix it by hand a hundred times.
+
+## Format data
+
+Convert data to geojson with:
+
+```
+npm run format
+```
+
+The data will be written in the `output/geojson.json` file.
 
 ---
 
