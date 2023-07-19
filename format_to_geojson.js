@@ -4,21 +4,18 @@ const path = require('path');
 const inputFilePath = path.join(__dirname, 'output/tesla_stores.json');
 const outputFilePath = path.join(__dirname, 'output/geojson.json');
 
-// Lire le fichier JSON
-fs.readFile(inputFilePath, 'utf8', (err, data) => {
-  if (err) {
+fs.readFile(inputFilePath, 'utf8', (error, data) => {
+  if (error) {
     console.error(
       "Une erreur s'est produite lors de la lecture du fichier JSON :",
-      err,
+      error,
     );
     return;
   }
 
   try {
-    const locations = JSON.parse(data); // Convertir le contenu JSON en tableau d'objets
-
-    // Transformer chaque objet en GeoJSON
-    const geojsonFeatures = locations.map((location) => {
+    const stores = JSON.parse(data);
+    const geojsonFeatures = stores.map((location) => {
       const {
         name,
         commonName,
@@ -71,16 +68,14 @@ fs.readFile(inputFilePath, 'utf8', (err, data) => {
 
     const outputData = JSON.stringify(geojson, null, 2);
 
-    fs.writeFile(outputFilePath, outputData, (err) => {
-      if (err) {
+    fs.writeFile(outputFilePath, outputData, (error) => {
+      if (error) {
         console.error(
           "Une erreur s'est produite lors de l'écriture du fichier GeoJSON :",
-          err,
+          error,
         );
       } else {
-        console.log(
-          `Le fichier GeoJSON a été enregistré avec succès : ${outputFilePath}`,
-        );
+        console.log('\x1b[32m \n\n✔ Terminé\n\n \x1b[0m');
       }
     });
   } catch (error) {
