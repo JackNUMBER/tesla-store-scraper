@@ -1,3 +1,11 @@
+This repo contains some script to get Tesla stores data and prepare data to create a [Maproulette](https://maproulette.org/) challenge. The final purpose is to add this data in **OpenStreetMap**.
+
+Summary:
+
+1. [Init](#init)
+2. [Scrap data](#scrap-data)
+3. [Format data](#format-data)
+
 ## Init
 
 Install dependencies with:
