@@ -4,9 +4,11 @@
   "author": "jacknumber",
   "scripts": {
     "scrap": "node scraper.js",
-    "format": "node format_to_geojson.js"
+    "format": "node format_to_geojson.js",
+    "analyse": "node analyser.js"
   },
   "dependencies": {
+    "@turf/turf": "^6.5.0",
     "axios": "^1.4.0",
     "cheerio": "^1.0.0-rc.12"
   }

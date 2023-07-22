@@ -5,6 +5,7 @@ Summary:
 1. [Init](#init)
 2. [Scrap data](#scrap-data)
 3. [Format data](#format-data)
+4. [Analysis data](#analysis-data)
 
 ## Init
 
@@ -79,7 +80,18 @@ Convert data to geojson with:
 npm run format
 ```
 
-The data will be written in the `output/geojson.json` file.
+The data will be written in the `output/tesla_stores.geojson` file.
+
+## Analysis data
+
+The best part. ✨
+Datas will be compared with existing OSM data (should be `./overpass-export.geojson`). The script will separate stores already in OSM from those that are not (WIP).
+
+```
+npm run analyse
+```
+
+The data will be written in the `output/tesla_stores_in_osm.json` and `output/tesla_stores_not_in_osm.json` files.
 
 ---
 
