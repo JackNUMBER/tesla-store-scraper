@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const inputFilePath = path.join(__dirname, 'output/tesla_stores.json');
-const outputFilePath = path.join(__dirname, 'output/geojson.json');
+const outputFilePath = path.join(__dirname, 'output/tesla_stores.geojson');
 
 fs.readFile(inputFilePath, 'utf8', (error, data) => {
   if (error) {
