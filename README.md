@@ -27,7 +27,7 @@ The data will be written in stream in the `output/tesla_stores.json` file.
 
 Here a sample of output data:
 
-```
+```json
 {
   "name": "Cannes-Mandelieu",
   "commonName": "Cannes-Mandelieu",
@@ -82,6 +82,38 @@ npm run format
 
 The opening hours will be converted to [OSM specification](https://wiki.openstreetmap.org/wiki/Key:opening_hours).\
 The data will be written in the `output/tesla_stores.geojson` file.
+
+Here a sample of output data:
+
+```json
+{
+  "type": "Feature",
+  "properties": {
+    "name": "Cannes-Mandelieu",
+    "commonName": "Cannes-Mandelieu",
+    "address": "Avenue du Marechal de Lattre de Tassigny",
+    "extendedAddress": "Tesla Mandelieu",
+    "city": "06210 Mandelieu-la-NapouleFrance",
+    "phone": "+33423110178",
+    "email": "riviera_sales@tesla.com",
+    "storeType": "Stores and Galleries",
+    "hasRepearCenter": "yes",
+    "services": {
+      "type-store": "Stores and Galleries",
+      "type-service": "Service Center"
+    },
+    "storeHours": "Tu-Sa 10:00-18:00; Su off",
+    "serviceHours": "Tu-Fr 08:30-18:30; Sa-Su off"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      6.9446249,
+      43.5495466
+    ]
+  }
+},
+```
 
 ## Analysis data
 
