@@ -80,6 +80,7 @@ Convert data to geojson with:
 npm run format
 ```
 
+The opening hours will be converted to [OSM specification](https://wiki.openstreetmap.org/wiki/Key:opening_hours).\
 The data will be written in the `output/tesla_stores.geojson` file.
 
 ## Analysis data

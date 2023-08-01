@@ -1,8 +1,21 @@
 const fs = require('fs');
 const path = require('path');
+const { convert } = require('./format_hours');
 
 const inputFilePath = path.join(__dirname, 'output/tesla_stores.json');
 const outputFilePath = path.join(__dirname, 'output/tesla_stores.geojson');
+
+function formatHours(hours) {
+  console.log(hours);
+  let output = '';
+
+  for (const [key, value] of Object.entries(hours)) {
+    output += `${key}: ${value}, `;
+  }
+
+  console.log(convert(output));
+  return convert(output);
+}
 
 fs.readFile(inputFilePath, 'utf8', (error, data) => {
   if (error) {
@@ -45,8 +58,8 @@ fs.readFile(inputFilePath, 'utf8', (error, data) => {
           storeType,
           hasRepearCenter,
           services,
-          storeHours,
-          serviceHours,
+          storeHours: formatHours(storeHours),
+          serviceHours: formatHours(serviceHours),
         },
         geometry: {
           type: 'Point',
