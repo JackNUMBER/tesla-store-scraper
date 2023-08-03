@@ -48,13 +48,8 @@ for (const scrapedFeature of scrapedData.features) {
   }
 }
 
-console.log('storesProbablyInOsm', storesProbablyInOsm.length);
-console.log('storesProbablyNotInOsm', storesProbablyNotInOsm.length);
-console.log(
-  'total',
-  storesProbablyInOsm.length + storesProbablyNotInOsm.length,
-);
-console.log('scraped', scrapedData.features.length);
+console.log('stores probably in OSM:    ', storesProbablyInOsm.length);
+console.log('stores probably not in OSM:', storesProbablyNotInOsm.length);
 
 const hasError = false;
 
