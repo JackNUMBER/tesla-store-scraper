@@ -5,6 +5,11 @@ const { convert } = require('./format_hours');
 const inputFilePath = path.join(__dirname, 'output/tesla_stores.json');
 const outputFilePath = path.join(__dirname, 'output/tesla_stores.geojson');
 
+function setName(name) {
+  if (name.includes('Tesla')) return name;
+  return `Tesla ${name}`;
+}
+
 function formatHours(hours) {
   let output = '';
 
@@ -46,18 +51,17 @@ fs.readFile(inputFilePath, 'utf8', (error, data) => {
       const feature = {
         type: 'Feature',
         properties: {
-          name,
-          commonName,
+          name: setName(name),
+          phone,
+          email,
           address,
           extendedAddress,
           city,
-          phone,
-          email,
-          storeType,
-          hasRepearCenter,
-          services,
           storeHours: formatHours(storeHours),
           serviceHours: formatHours(serviceHours),
+          hasRepearCenter,
+          storeType,
+          services,
         },
         geometry: {
           type: 'Point',
