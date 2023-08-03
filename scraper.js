@@ -89,7 +89,7 @@ async function scrapStorePage(url) {
 
     // services
     const storeType = $(main).find('.type-store').text().trim();
-    const hasRepearCenter = $(main).find('.type-service') ? 'yes' : 'no';
+    const hasRepearCenter = $(main).find('.type-service') ? 'yes' : 'no'; // TODO: return 'yes' everytime
     const listServices = $('.find-us-details-types li');
     const services = {};
     listServices.each((_index, element) => {
