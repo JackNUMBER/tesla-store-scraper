@@ -27,14 +27,21 @@ for (const scrapedFeature of scrapedData.features) {
   const point = turf.point(scrapedFeature.geometry.coordinates);
   const circle = turf.circle(point, RADIUS_IN_METERS, OPTIONS);
 
+  let nodeId = '';
+
   for (const osmFeature of osmData.features) {
+    nodeId = '';
     const challengerPoint = turf.point(osmFeature.geometry.coordinates);
     isIntersect = turf.booleanPointInPolygon(challengerPoint, circle);
 
-    if (isIntersect) break;
+    if (isIntersect) {
+      nodeId = osmFeature.id;
+      break;
+    }
   }
 
   if (isIntersect) {
+    scrapedFeature.properties['osm_id'] = nodeId;
     storesProbablyInOsm.push(scrapedFeature);
   } else {
     storesProbablyNotInOsm.push(scrapedFeature);
