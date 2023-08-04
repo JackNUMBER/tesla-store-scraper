@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const turf = require('@turf/turf');
 
-const RADIUS_IN_METERS = 200;
+const RADIUS_IN_METERS = 300;
 const OPTIONS = { steps: 10, units: 'meters' };
 
 const inputScrapFilePath = path.join(__dirname, 'output/tesla_stores.geojson');
@@ -31,7 +31,16 @@ for (const scrapedFeature of scrapedData.features) {
 
   for (const osmFeature of osmData.features) {
     nodeId = '';
-    const challengerPoint = turf.point(osmFeature.geometry.coordinates);
+    let challengerPoint = '';
+
+    if (osmFeature.geometry.type === 'Polygon') {
+      // way
+      challengerPoint = turf.point(osmFeature.geometry.coordinates[0][0]);
+    } else {
+      // node
+      challengerPoint = turf.point(osmFeature.geometry.coordinates);
+    }
+
     isIntersect = turf.booleanPointInPolygon(challengerPoint, circle);
 
     if (isIntersect) {
