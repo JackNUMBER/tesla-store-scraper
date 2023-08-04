@@ -32,14 +32,11 @@ function extractHoursFromParagraph(paragraph, cheerio) {
   });
 
   lines.each((index, element) => {
-    if (index > 0) {
-      // ignore first line "Store Hours"
-      const text = $(element).text().trim();
-      const parts = text.split(' ');
-      const key = parts.shift().toLowerCase();
-      const value = parts.join(' ');
-      output[key] = value;
-    }
+    const text = $(element).text().trim();
+    const parts = text.split(' ');
+    const key = parts.shift().toLowerCase();
+    const value = parts.join(' ');
+    output[key] = value;
   });
 
   return output;
