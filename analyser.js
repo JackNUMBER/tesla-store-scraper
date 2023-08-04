@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const turf = require('@turf/turf');
 
-const RADIUS_IN_METERS = 300;
+const RADIUS_IN_METERS = 500;
 const OPTIONS = { steps: 10, units: 'meters' };
 
 const inputScrapFilePath = path.join(__dirname, 'output/tesla_stores.geojson');
