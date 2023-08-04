@@ -120,7 +120,7 @@ Here a sample of output data:
 ## Analysis data
 
 The best part. ✨
-Datas will be compared with existing OpenStreetMap data (see [OSM extract](#osm-extract)). The script will separate stores already in OSM from those that are not (WIP).
+Datas will be compared with existing OpenStreetMap data (see [OSM extract](#osm-extract)). The script will separate stores already in OSM from those that are not.
 
 ```
 npm run analyse
@@ -131,13 +131,16 @@ The data will be written in the `output/tesla_stores_in_osm.json` and `output/te
 ### OSM extract
 
 - Extract data from OpenStreetMap with this request (you can use [Overpass Turbo](https://overpass-turbo.eu/))
-  ```
+  ```c
   [out:json];
   node["shop"="car"]["brand"="Tesla"];
-  out;
+  way["shop"="car"]["brand"="Tesla"];
+  out geom;
   ```
 - Export the data in GeoJSON to a file named `overpass-export.geojson`, place it in this project's root
 - Then you can run the `analyse` command
+
+Everything is ready to create the Maproulette challenge 😀
 
 ---
 
