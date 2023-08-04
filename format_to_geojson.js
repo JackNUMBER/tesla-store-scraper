@@ -31,7 +31,7 @@ fs.readFile(inputFilePath, 'utf8', (error, data) => {
 
   try {
     const stores = JSON.parse(data);
-    const geojsonFeatures = stores.map((location) => {
+    const geojsonFeatures = stores.map((store) => {
       const {
         name,
         commonName,
@@ -46,7 +46,7 @@ fs.readFile(inputFilePath, 'utf8', (error, data) => {
         storeHours,
         serviceHours,
         coordinates,
-      } = location;
+      } = store;
 
       const feature = {
         type: 'Feature',
