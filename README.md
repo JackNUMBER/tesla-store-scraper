@@ -1,4 +1,6 @@
-This repo contains some script to get Tesla stores data and prepare data to create a [Maproulette](https://maproulette.org/) challenge. The final purpose is to add this data in **OpenStreetMap**.
+This repo purpose is about getting Tesla stores data and prepare data to create a **[Maproulette](https://maproulette.org/) challenge**. The final purpose is to add this data in **OpenStreetMap**.
+
+It contains 👨‍💻 **recursive scraping** and 🌍 **geospatial data analysis**. All in Nodejs.
 
 Summary:
 
