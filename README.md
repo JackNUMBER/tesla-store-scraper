@@ -133,8 +133,12 @@ The data will be written in the `output/tesla_stores_in_osm.json` and `output/te
 - Extract data from OpenStreetMap with this request (you can use [Overpass Turbo](https://overpass-turbo.eu/))
   ```c
   [out:json];
-  node["shop"="car"]["brand"="Tesla"];
-  way["shop"="car"]["brand"="Tesla"];
+  (
+    node["shop"="car"]["name"~"Tesla"];
+    node["shop"="car"]["brand"="Tesla"];
+    way["shop"="car"]["name"~"Tesla"];
+    way["shop"="car"]["brand"="Tesla"];
+  );
   out geom;
   ```
 - Export the data in GeoJSON to a file named `overpass-export.geojson`, place it in this project's root
